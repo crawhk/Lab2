@@ -189,7 +189,7 @@ ggplot(plastic_waste, aes(x= continent, y= plastic_waste_per_cap)) + geom_violin
 
 3.1 Violin plots vs boxplots  
 - Violin plots better show the distribution of our data, specifically
-the density. Whereas, boxplots bbetter show summary statistics such as
+the density. Whereas, boxplots better show summary statistics such as
 the median, quartiles, and outliers.
 
 ### Exercise 4
@@ -197,20 +197,61 @@ the median, quartiles, and outliers.
 Remove this text, and add your answer for Exercise 4 here.
 
 ``` r
-# insert code here
+ggplot(plastic_waste, aes(y = mismanaged_plastic_waste_per_cap, x = plastic_waste_per_cap)) + geom_point()
 ```
 
-``` r
-# insert code here
-```
+    ## Warning: Removed 51 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](lab-02_files/figure-gfm/plastic-waste-mismanaged-1.png)<!-- -->
+
+4.1 Describing relationship between plastic waste per capita and
+mismanaged waste  
+- The relationship between plastic waste and mismanged waste is positive
+and linear
 
 ``` r
-# insert code here
+ggplot(plastic_waste, aes(x = mismanaged_plastic_waste_per_cap, y = plastic_waste_per_cap, colour = continent)) + geom_point()
 ```
 
+    ## Warning: Removed 51 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](lab-02_files/figure-gfm/plastic-waste-mismanaged-continent-1.png)<!-- -->
+
+4.2 Interpretation by continent  
+- Countries in Europe tend to have the lowest plastic waste per capita
+and the most well managed waste per capita.  
+- One country in North America has poor waste management and a high
+level of waste per capital. Otherwise, most coutntries in North America
+are clustered.  
+- Countries of Africa, Oceana, and South America appear to have the most
+variable relationships. Patterning may be related to development of
+country.
+
 ``` r
-# insert code here
+ggplot(plastic_waste, aes(x = plastic_waste_per_cap, y = total_pop)) + geom_point()
 ```
+
+    ## Warning: Removed 61 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](lab-02_files/figure-gfm/plastic-waste-population-total-1.png)<!-- -->
+
+``` r
+ggplot(plastic_waste, aes(x = plastic_waste_per_cap, y = coastal_pop)) + geom_point()
+```
+
+    ## Warning: Removed 51 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](lab-02_files/figure-gfm/plastic-waste-population-coastal-1.png)<!-- -->
+
+4.3  
+- Neither of these pairs of variables appear to be more strongly
+linearly associated than the other. However, if I had to choose, I would
+say that the coastal population plot is likely more linear due to an
+higher number of outliers.
 
 ### Exercise 5
 
