@@ -96,7 +96,8 @@ Mapping vs setting
 - Mapping is a characteristic that is based on values of a variable in the data set (goes into aesthetics) - in our case color and fill are based on continent
 - Settings of points are not based on values pertaining to variables in the dataset (can go into geom_*) - in our case transparency is not tied directly to the dataset, rather it is a tool for visualization purposes 
 
-Another way to visualize - side-by-side box plots
+### Exercise 3
+Another way to visualize - side-by-side box plots 
 ```{r}
 ggplot(
   data = plastic_waste,
@@ -108,15 +109,13 @@ ggplot(
   geom_boxplot()
 ```
 
-
-### Exercise 3
-
 Remove this text, and add your answer for Exercise 3 here.
 
-```{r plastic-waste-violin}
-# insert code here
+```{r plastic waste violin}
+ggplot(plastic_waste, aes(x= continent, y= plastic_waste_per_cap)) + geom_violin()
 ```
-
+3.1 
+Violin plots better show the distribution of our data, specifically the density. Whereas, boxplots bbetter show summary statistics such as the median, quartiles, and outliers. 
 ### Exercise 4
 
 Remove this text, and add your answer for Exercise 4 here.
