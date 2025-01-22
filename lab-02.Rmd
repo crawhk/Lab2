@@ -157,4 +157,4 @@ ggplot(plastic_waste, aes(x = plastic_waste_per_cap, y = coastal_pop)) + geom_po
 ggplot (plastic_waste, aes(x = coastal_pop/total_pop, y = plastic_waste_per_cap, colour = continent)) + geom_point ()+ geom_smooth() + labels(title = "Plastic Waste vs Coastal Population Proportion", subtitle = "By Continent")
 ```
 
-#help--- need help with filtering, making the linese not colored just dots, and making labels appear 
+#help--- need help with filtering, making the linese not colored just dots, and making labels appear help 
