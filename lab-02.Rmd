@@ -121,8 +121,6 @@ ggplot(plastic_waste, aes(x= continent, y= plastic_waste_per_cap)) + geom_violin
 
 ### Exercise 4
 
-Remove this text, and add your answer for Exercise 4 here.
-
 ```{r plastic-waste-mismanaged}
 ggplot(plastic_waste, aes(y = mismanaged_plastic_waste_per_cap, x = plastic_waste_per_cap)) + geom_point()
 ```
@@ -153,12 +151,10 @@ ggplot(plastic_waste, aes(x = plastic_waste_per_cap, y = coastal_pop)) + geom_po
 4.3 Linearity  
 - Neither of these pairs of variables appear to be more strongly linearly associated than the other. However, if I had to choose, I would say that the coastal population plot is likely more linear due to an higher number of outliers. 
 
-### Exercise 5
-
-Remove this text, and add your answer for Exercise 5 here.
+### Exercise 
 
 ```{r recreate-viz}
-# insert code here
+ggplot (plastic_waste, aes(x = coastal_pop/total_pop, y = plastic_waste_per_cap, colour = continent)) + geom_point ()+ geom_smooth() + labels(title = "Plastic Waste vs Coastal Population Proportion", subtitle = "By Continent")
 ```
 
-
+#help--- need help with filtering, making the linese not colored just dots, and making labels appear 
