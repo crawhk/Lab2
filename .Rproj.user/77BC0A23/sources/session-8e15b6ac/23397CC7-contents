@@ -156,4 +156,5 @@ ggplot(filter_plastic_waste, aes(x = plastic_waste_per_cap, y = coastal_pop)) + 
 ```{r recreate-viz}
 ggplot (filter_plastic_waste, aes(x = coastal_pop/total_pop, y = plastic_waste_per_cap, color = continent)) + theme_bw() + geom_point ()+ geom_smooth(color = 'black') + scale_color_viridis_d() + labs(title = "Plastic Waste vs Coastal Population Proportion", subtitle = "By Continent", x = "Coastal Population Proportion (Coastal/Total)", y = "Plastic Waste Per Capita", color = "Continent") 
 ```
- 
+
+Finished with Lab2! 
