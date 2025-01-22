@@ -1,7 +1,7 @@
 Lab 02 - Plastic waste
 ================
-Insert your name here
-Insert date here
+Hannah Crawley
+1/22/2025
 
 ## Load packages and data
 
@@ -13,29 +13,184 @@ library(tidyverse)
 plastic_waste <- read.csv("data/plastic-waste.csv")
 ```
 
-## Exercises
+## Warmup
+
+4 panes of RStudio include:  
+1) source - where you write edit and save and R code  
+2) console - can directly execute code here p.s. do not write here and
+expect it to save  
+3) environment (contains envi, history, connections)- displays current
+projects  
+4) output - displays outputs but also holds your file directory
+
+How many entries are in the dataset? (use view(filename) to see or click
+in envi pane)  
+- 240 entries
 
 ### Exercise 1
 
-Remove this text, and add your answer for Exercise 1 here.
+``` r
+ggplot(data = plastic_waste, aes(x = plastic_waste_per_cap)) +
+  geom_histogram(binwidth = 0.2)
+```
+
+    ## Warning: Removed 51 rows containing non-finite outside the scale range
+    ## (`stat_bin()`).
+
+![](lab-02_files/figure-gfm/waste_per_capita-1.png)<!-- -->
+
+Notice there is an extreme outlier on the right hand side of the graph.
+To determine which country this is, filter the data for countries where
+waste per capita is greater that 3.5kg/person
 
 ``` r
-# insert code here
+plastic_waste %>%
+  filter(plastic_waste_per_cap > 3.5)
 ```
+
+    ##   code              entity     continent year gdp_per_cap plastic_waste_per_cap
+    ## 1  TTO Trinidad and Tobago North America 2010    31260.91                   3.6
+    ##   mismanaged_plastic_waste_per_cap mismanaged_plastic_waste coastal_pop
+    ## 1                             0.19                    94066     1358433
+    ##   total_pop
+    ## 1   1341465
+
+1.1 Interpretation  
+- Did not particularly expect this result - based on a quick google
+search Trinidad and Tobago appears to have a waste problem due to a
+variety of issues from high import volume, poor infrastructure, and
+limited land for landfills. Generally, many of the countries hover
+around 0.25 kg/person with a cluster falling below that and into the
+negative.
+
+``` r
+ggplot(
+  data = plastic_waste,
+  aes(x = plastic_waste_per_cap)
+) +
+  geom_density()
+```
+
+    ## Warning: Removed 51 rows containing non-finite outside the scale range
+    ## (`stat_density()`).
+
+![](lab-02_files/figure-gfm/creating%20density%20plot-1.png)<!-- -->
+
+``` r
+ggplot(
+  data = plastic_waste,
+  mapping = aes(
+    x = plastic_waste_per_cap,
+    color = continent
+  )
+) +
+  geom_density()
+```
+
+    ## Warning: Removed 51 rows containing non-finite outside the scale range
+    ## (`stat_density()`).
+
+![](lab-02_files/figure-gfm/coloring%20desity%20plot-1.png)<!-- -->
+
+``` r
+ggplot(
+  data = plastic_waste,
+  mapping = aes(
+    x = plastic_waste_per_cap,
+    color = continent,
+    fill = continent
+  )
+) +
+  geom_density()
+```
+
+    ## Warning: Removed 51 rows containing non-finite outside the scale range
+    ## (`stat_density()`).
+
+![](lab-02_files/figure-gfm/color%20fill%20density%20plot-1.png)<!-- -->
+
+``` r
+ggplot(
+  data = plastic_waste,
+  mapping = aes(
+    x = plastic_waste_per_cap,
+    color = continent,
+    fill = continent
+  )
+) +
+  geom_density(alpha = 0.7)
+```
+
+    ## Warning: Removed 51 rows containing non-finite outside the scale range
+    ## (`stat_density()`).
+
+![](lab-02_files/figure-gfm/changing%20alpha-1.png)<!-- -->
 
 ### Exercise 2
 
+2.1 Lower alpha
+
 ``` r
-# insert code here
+ggplot(
+  data = plastic_waste,
+  mapping = aes(
+    x = plastic_waste_per_cap,
+    color = continent,
+    fill = continent
+  )
+) +
+  geom_density(alpha = 0.2)
 ```
+
+    ## Warning: Removed 51 rows containing non-finite outside the scale range
+    ## (`stat_density()`).
+
+![](lab-02_files/figure-gfm/altering%20alpha-1.png)<!-- -->
+
+2.2 Why did we define color and fill of the curves via aesthetics but we
+defined alpha as a characteristic?  
+Mapping vs setting  
+- Mapping is a characteristic that is based on values of a variable in
+the data set (goes into aesthetics) - in our case color and fill are
+based on continent  
+- Settings of points are not based on values pertaining to variables in
+the dataset (can go into geom\_\*) - in our case transparency is not
+tied directly to the dataset, rather it is a tool for visualization
+purposes
 
 ### Exercise 3
 
-Remove this text, and add your answer for Exercise 3 here.
+Another way to visualize - side-by-side box plots
 
 ``` r
-# insert code here
+ggplot(
+  data = plastic_waste,
+  mapping = aes(
+    x = continent,
+    y = plastic_waste_per_cap
+  )
+) +
+  geom_boxplot()
 ```
+
+    ## Warning: Removed 51 rows containing non-finite outside the scale range
+    ## (`stat_boxplot()`).
+
+![](lab-02_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
+
+``` r
+ggplot(plastic_waste, aes(x= continent, y= plastic_waste_per_cap)) + geom_violin()
+```
+
+    ## Warning: Removed 51 rows containing non-finite outside the scale range
+    ## (`stat_ydensity()`).
+
+![](lab-02_files/figure-gfm/plastic%20waste%20violin-1.png)<!-- -->
+
+3.1 Violin plots vs boxplots  
+- Violin plots better show the distribution of our data, specifically
+the density. Whereas, boxplots bbetter show summary statistics such as
+the median, quartiles, and outliers.
 
 ### Exercise 4
 

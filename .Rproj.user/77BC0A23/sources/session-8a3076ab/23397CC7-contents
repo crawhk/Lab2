@@ -15,28 +15,30 @@ library(tidyverse)
 plastic_waste <- read.csv("data/plastic-waste.csv")
 ```
 
-Warmup
-4 panes of RStudio include:
-1) source - where you write edit and save and R code 
-2) console - can directly execute code here p.s. do not write here and expect it to save 
-3) environment (contains envi, history, connections)- displays current projects
+##  Warmup  
+4 panes of RStudio include:  
+1) source - where you write edit and save and R code  
+2) console - can directly execute code here p.s. do not write here and expect it to save  
+3) environment (contains envi, history, connections)- displays current projects  
 4) output - displays outputs but also holds your file directory 
 
-How many entries are in the dataset? (use view(filename) to see or click in envi pane)
-240 entries 
+How many entries are in the dataset? (use view(filename) to see or click in envi pane)  
+- 240 entries 
 
 ### Exercise 1
 ```{r waste_per_capita}
 ggplot(data = plastic_waste, aes(x = plastic_waste_per_cap)) +
   geom_histogram(binwidth = 0.2)
 ```
+
 Notice there is an extreme outlier on the right hand side of the graph. To determine which country this is, filter the data for countries where waste per capita is greater that 3.5kg/person
 
 ```{r waste_per_capita_filter}
 plastic_waste %>%
   filter(plastic_waste_per_cap > 3.5)
 ```
-1.1 Did not particularly expect this result - based on a quick google search Trinidad and Tobago appears to have a waste problem due to a variety of issues from high import volume, poor infrastructure, and limited land for landfills. Many of the countries hover around 0.25 kg/person with a cluster falling below that and into the negative. 
+1.1 Interpretation  
+- Did not particularly expect this result - based on a quick google search Trinidad and Tobago appears to have a waste problem due to a variety of issues from high import volume, poor infrastructure, and limited land for landfills. Generally, many of the countries hover around 0.25 kg/person with a cluster falling below that and into the negative. 
 
 ```{r creating density plot}
 ggplot(
@@ -91,9 +93,10 @@ ggplot(
 ) +
   geom_density(alpha = 0.2)
 ```
-2.2 Why did we define color and fill of the curves via aesthetics but we defined alpha as a characteristic? 
-Mapping vs setting 
-- Mapping is a characteristic that is based on values of a variable in the data set (goes into aesthetics) - in our case color and fill are based on continent
+
+2.2 Why did we define color and fill of the curves via aesthetics but we defined alpha as a characteristic?  
+Mapping vs setting  
+- Mapping is a characteristic that is based on values of a variable in the data set (goes into aesthetics) - in our case color and fill are based on continent  
 - Settings of points are not based on values pertaining to variables in the dataset (can go into geom_*) - in our case transparency is not tied directly to the dataset, rather it is a tool for visualization purposes 
 
 ### Exercise 3
@@ -109,13 +112,13 @@ ggplot(
   geom_boxplot()
 ```
 
-Remove this text, and add your answer for Exercise 3 here.
-
 ```{r plastic waste violin}
 ggplot(plastic_waste, aes(x= continent, y= plastic_waste_per_cap)) + geom_violin()
 ```
-3.1 
-Violin plots better show the distribution of our data, specifically the density. Whereas, boxplots bbetter show summary statistics such as the median, quartiles, and outliers. 
+  
+3.1 Violin plots vs boxplots  
+- Violin plots better show the distribution of our data, specifically the density. Whereas, boxplots better show summary statistics such as the median, quartiles, and outliers. 
+
 ### Exercise 4
 
 Remove this text, and add your answer for Exercise 4 here.
