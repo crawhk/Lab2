@@ -1,0 +1,1 @@
+"0","ggplot(plastic_waste, aes(y = mismanaged_plastic_waste_per_cap, x = plastic_waste_per_cap)) + geom_point()"
