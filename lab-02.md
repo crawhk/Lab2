@@ -10,7 +10,7 @@ library(tidyverse)
 ```
 
 ``` r
-plastic_waste <- read.csv("data/plastic-waste.csv")
+plastic_waste<- read.csv("data/plastic-waste.csv")
 ```
 
 ## Warmup
@@ -44,16 +44,9 @@ To determine which country this is, filter the data for countries where
 waste per capita is greater that 3.5kg/person
 
 ``` r
-plastic_waste %>%
-  filter(plastic_waste_per_cap > 3.5)
+filter_plastic_waste<- plastic_waste%>%
+  filter(plastic_waste_per_cap < 3)
 ```
-
-    ##   code              entity     continent year gdp_per_cap plastic_waste_per_cap
-    ## 1  TTO Trinidad and Tobago North America 2010    31260.91                   3.6
-    ##   mismanaged_plastic_waste_per_cap mismanaged_plastic_waste coastal_pop
-    ## 1                             0.19                    94066     1358433
-    ##   total_pop
-    ## 1   1341465
 
 1.1 Interpretation  
 - Did not particularly expect this result - based on a quick google
@@ -65,20 +58,17 @@ negative.
 
 ``` r
 ggplot(
-  data = plastic_waste,
+  data = filter_plastic_waste,
   aes(x = plastic_waste_per_cap)
 ) +
   geom_density()
 ```
 
-    ## Warning: Removed 51 rows containing non-finite outside the scale range
-    ## (`stat_density()`).
-
 ![](lab-02_files/figure-gfm/creating%20density%20plot-1.png)<!-- -->
 
 ``` r
 ggplot(
-  data = plastic_waste,
+  data = filter_plastic_waste,
   mapping = aes(
     x = plastic_waste_per_cap,
     color = continent
@@ -87,14 +77,11 @@ ggplot(
   geom_density()
 ```
 
-    ## Warning: Removed 51 rows containing non-finite outside the scale range
-    ## (`stat_density()`).
-
 ![](lab-02_files/figure-gfm/coloring%20desity%20plot-1.png)<!-- -->
 
 ``` r
 ggplot(
-  data = plastic_waste,
+  data = filter_plastic_waste,
   mapping = aes(
     x = plastic_waste_per_cap,
     color = continent,
@@ -104,14 +91,11 @@ ggplot(
   geom_density()
 ```
 
-    ## Warning: Removed 51 rows containing non-finite outside the scale range
-    ## (`stat_density()`).
-
 ![](lab-02_files/figure-gfm/color%20fill%20density%20plot-1.png)<!-- -->
 
 ``` r
 ggplot(
-  data = plastic_waste,
+  data = filter_plastic_waste,
   mapping = aes(
     x = plastic_waste_per_cap,
     color = continent,
@@ -121,9 +105,6 @@ ggplot(
   geom_density(alpha = 0.7)
 ```
 
-    ## Warning: Removed 51 rows containing non-finite outside the scale range
-    ## (`stat_density()`).
-
 ![](lab-02_files/figure-gfm/changing%20alpha-1.png)<!-- -->
 
 ### Exercise 2
@@ -132,7 +113,7 @@ ggplot(
 
 ``` r
 ggplot(
-  data = plastic_waste,
+  data = filter_plastic_waste,
   mapping = aes(
     x = plastic_waste_per_cap,
     color = continent,
@@ -141,9 +122,6 @@ ggplot(
 ) +
   geom_density(alpha = 0.2)
 ```
-
-    ## Warning: Removed 51 rows containing non-finite outside the scale range
-    ## (`stat_density()`).
 
 ![](lab-02_files/figure-gfm/altering%20alpha-1.png)<!-- -->
 
@@ -164,7 +142,7 @@ Another way to visualize - side-by-side box plots
 
 ``` r
 ggplot(
-  data = plastic_waste,
+  data = filter_plastic_waste,
   mapping = aes(
     x = continent,
     y = plastic_waste_per_cap
@@ -173,17 +151,11 @@ ggplot(
   geom_boxplot()
 ```
 
-    ## Warning: Removed 51 rows containing non-finite outside the scale range
-    ## (`stat_boxplot()`).
-
 ![](lab-02_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
 ``` r
-ggplot(plastic_waste, aes(x= continent, y= plastic_waste_per_cap)) + geom_violin()
+ggplot(filter_plastic_waste, aes(x= continent, y= plastic_waste_per_cap)) + geom_violin()
 ```
-
-    ## Warning: Removed 51 rows containing non-finite outside the scale range
-    ## (`stat_ydensity()`).
 
 ![](lab-02_files/figure-gfm/plastic%20waste%20violin-1.png)<!-- -->
 
@@ -194,14 +166,9 @@ the median, quartiles, and outliers.
 
 ### Exercise 4
 
-Remove this text, and add your answer for Exercise 4 here.
-
 ``` r
-ggplot(plastic_waste, aes(y = mismanaged_plastic_waste_per_cap, x = plastic_waste_per_cap)) + geom_point()
+ggplot(filter_plastic_waste, aes(y = mismanaged_plastic_waste_per_cap, x = plastic_waste_per_cap)) + geom_point()
 ```
-
-    ## Warning: Removed 51 rows containing missing values or values outside the scale range
-    ## (`geom_point()`).
 
 ![](lab-02_files/figure-gfm/plastic-waste-mismanaged-1.png)<!-- -->
 
@@ -211,11 +178,8 @@ mismanaged waste
 and linear
 
 ``` r
-ggplot(plastic_waste, aes(x = mismanaged_plastic_waste_per_cap, y = plastic_waste_per_cap, colour = continent)) + geom_point()
+ggplot(filter_plastic_waste, aes(x = mismanaged_plastic_waste_per_cap, y = plastic_waste_per_cap, colour = continent)) + geom_point()
 ```
-
-    ## Warning: Removed 51 rows containing missing values or values outside the scale range
-    ## (`geom_point()`).
 
 ![](lab-02_files/figure-gfm/plastic-waste-mismanaged-continent-1.png)<!-- -->
 
@@ -230,20 +194,17 @@ variable relationships. Patterning may be related to development of
 country.
 
 ``` r
-ggplot(plastic_waste, aes(x = plastic_waste_per_cap, y = total_pop)) + geom_point()
+ggplot(filter_plastic_waste, aes(x = plastic_waste_per_cap, y = total_pop)) + geom_point()
 ```
 
-    ## Warning: Removed 61 rows containing missing values or values outside the scale range
+    ## Warning: Removed 10 rows containing missing values or values outside the scale range
     ## (`geom_point()`).
 
 ![](lab-02_files/figure-gfm/plastic-waste-population-total-1.png)<!-- -->
 
 ``` r
-ggplot(plastic_waste, aes(x = plastic_waste_per_cap, y = coastal_pop)) + geom_point()
+ggplot(filter_plastic_waste, aes(x = plastic_waste_per_cap, y = coastal_pop)) + geom_point()
 ```
-
-    ## Warning: Removed 51 rows containing missing values or values outside the scale range
-    ## (`geom_point()`).
 
 ![](lab-02_files/figure-gfm/plastic-waste-population-coastal-1.png)<!-- -->
 
@@ -253,10 +214,18 @@ linearly associated than the other. However, if I had to choose, I would
 say that the coastal population plot is likely more linear due to an
 higher number of outliers.
 
-### Exercise 5
-
-Remove this text, and add your answer for Exercise 5 here.
+### Exercise
 
 ``` r
-# insert code here
+ggplot (filter_plastic_waste, aes(x = coastal_pop/total_pop, y = plastic_waste_per_cap, color = continent)) + theme_bw() + geom_point ()+ geom_smooth(color = 'black') + scale_color_viridis_d() + labs(title = "Plastic Waste vs Coastal Population Proportion", subtitle = "By Continent", x = "Coastal Population Proportion (Coastal/Total)", y = "Plastic Waste Per Capita", color = "Continent") 
 ```
+
+    ## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+
+    ## Warning: Removed 10 rows containing non-finite outside the scale range
+    ## (`stat_smooth()`).
+
+    ## Warning: Removed 10 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](lab-02_files/figure-gfm/recreate-viz-1.png)<!-- -->

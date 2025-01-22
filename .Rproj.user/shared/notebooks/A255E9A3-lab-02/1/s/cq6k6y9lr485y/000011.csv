@@ -1,4 +1,0 @@
-"0","ggplot (plastic_waste, aes(x = coastal_pop/total_pop, y = plastic_waste_per_cap, colour = continent)) + geom_point ()+ geom_smooth() + labels(title = ""Plastic Waste vs Coastal Population Proportion"", subtitle = ""By Continent"")"
-"2","Error in labels.default(title = ""Plastic Waste vs Coastal Population Proportion"",  : 
-  argument ""object"" is missing, with no default
-"
