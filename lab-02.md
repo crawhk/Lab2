@@ -247,7 +247,7 @@ ggplot(plastic_waste, aes(x = plastic_waste_per_cap, y = coastal_pop)) + geom_po
 
 ![](lab-02_files/figure-gfm/plastic-waste-population-coastal-1.png)<!-- -->
 
-4.3  
+4.3 Linearity  
 - Neither of these pairs of variables appear to be more strongly
 linearly associated than the other. However, if I had to choose, I would
 say that the coastal population plot is likely more linear due to an
