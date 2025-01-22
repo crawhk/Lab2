@@ -79,10 +79,35 @@ ggplot(
 ```
 
 ### Exercise 2
-
-```{r plastic-waste-density}
-# insert code here
+2.1 Lower alpha 
+```{r altering alpha}
+ggplot(
+  data = plastic_waste,
+  mapping = aes(
+    x = plastic_waste_per_cap,
+    color = continent,
+    fill = continent
+  )
+) +
+  geom_density(alpha = 0.2)
 ```
+2.2 Why did we define color and fill of the curves via aesthetics but we defined alpha as a characteristic? 
+Mapping vs setting 
+- Mapping is a characteristic that is based on values of a variable in the data set (goes into aesthetics) - in our case color and fill are based on continent
+- Settings of points are not based on values pertaining to variables in the dataset (can go into geom_*) - in our case transparency is not tied directly to the dataset, rather it is a tool for visualization purposes 
+
+Another way to visualize - side-by-side box plots
+```{r}
+ggplot(
+  data = plastic_waste,
+  mapping = aes(
+    x = continent,
+    y = plastic_waste_per_cap
+  )
+) +
+  geom_boxplot()
+```
+
 
 ### Exercise 3
 
