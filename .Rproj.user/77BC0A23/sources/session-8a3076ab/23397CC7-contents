@@ -22,7 +22,8 @@ Warmup
 3) environment (contains envi, history, connections)- displays current projects
 4) output - displays outputs but also holds your file directory 
 
-
+How many entries are in the dataset? (use view(filename) to see or click in envi pane)
+240 entries 
 
 ### Exercise 1
 
