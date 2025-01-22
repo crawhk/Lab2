@@ -1,0 +1,8 @@
+"0","ggplot("
+"0","  data = plastic_waste,"
+"0","  mapping = aes("
+"0","    x = plastic_waste_per_cap,"
+"0","    color = continent"
+"0","  )"
+"0",") +"
+"0","  geom_density()"

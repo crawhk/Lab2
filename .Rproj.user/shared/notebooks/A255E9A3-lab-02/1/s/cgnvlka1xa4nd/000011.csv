@@ -1,0 +1,5 @@
+"0","ggplot("
+"0","  data = plastic_waste,"
+"0","  aes(x = plastic_waste_per_cap)"
+"0",") +"
+"0","  geom_density()"

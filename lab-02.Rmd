@@ -26,11 +26,56 @@ How many entries are in the dataset? (use view(filename) to see or click in envi
 240 entries 
 
 ### Exercise 1
+```{r waste_per_capita}
+ggplot(data = plastic_waste, aes(x = plastic_waste_per_cap)) +
+  geom_histogram(binwidth = 0.2)
+```
+Notice there is an extreme outlier on the right hand side of the graph. To determine which country this is, filter the data for countries where waste per capita is greater that 3.5kg/person
 
-Remove this text, and add your answer for Exercise 1 here.
+```{r waste_per_capita_filter}
+plastic_waste %>%
+  filter(plastic_waste_per_cap > 3.5)
+```
+1.1 Did not particularly expect this result - based on a quick google search Trinidad and Tobago appears to have a waste problem due to a variety of issues from high import volume, poor infrastructure, and limited land for landfills. Many of the countries hover around 0.25 kg/person with a cluster falling below that and into the negative. 
 
-```{r plastic-waste-continent}
-# insert code here
+```{r creating density plot}
+ggplot(
+  data = plastic_waste,
+  aes(x = plastic_waste_per_cap)
+) +
+  geom_density()
+```
+```{r coloring desity plot}
+ggplot(
+  data = plastic_waste,
+  mapping = aes(
+    x = plastic_waste_per_cap,
+    color = continent
+  )
+) +
+  geom_density()
+```
+```{r color fill density plot}
+ggplot(
+  data = plastic_waste,
+  mapping = aes(
+    x = plastic_waste_per_cap,
+    color = continent,
+    fill = continent
+  )
+) +
+  geom_density()
+```
+```{r changing alpha}
+ggplot(
+  data = plastic_waste,
+  mapping = aes(
+    x = plastic_waste_per_cap,
+    color = continent,
+    fill = continent
+  )
+) +
+  geom_density(alpha = 0.7)
 ```
 
 ### Exercise 2
